@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 const user = require('./routes/User');
-// const config = require('./config');
+require('dotenv').config();
 
 const app = express();
 
