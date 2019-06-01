@@ -3,8 +3,15 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 const user = require('./routes/User');
 require('dotenv').config();
+const path = require("path")
 
 const app = express();
+
+app.use(express.static(path.join(__dirname, "client", "build")));
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 let port = process.env.PORT || 3001;
 app.listen(port, () => console.log(`Listening on PORT ${port}`));

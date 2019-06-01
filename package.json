@@ -11,26 +11,14 @@
     "mongoose": "^5.5.12",
     "node": "^12.3.1",
     "nodemon": "^1.19.1",
-    "npm-run-all": "^4.1.5",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-fontawesome": "^1.6.1",
-    "react-icons": "^3.7.0",
-    "react-scripts": "3.0.1"
+    "npm-run-all": "^4.1.5"
   },
   "scripts": {
-    "dev": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "server": "nodemon src/server.js",
-    "start": "run-p server dev"
+    "start": "node server.js",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "engines": {
     "node": "8.11.4"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [
