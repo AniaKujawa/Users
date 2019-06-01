@@ -1,0 +1,65 @@
+@import '../index.css';
+
+.addForm {
+   margin: 40px;
+}
+
+.addForm__label {
+    display: block;
+    color: var(--labelColor);
+}
+
+.addForm__input {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom-color: var(--labelColor);
+    min-width: 400px;
+    min-height: 30px;
+}
+
+.addForm__input:active, .addForm__input:focus {
+    outline: none;
+}
+
+.addForm__button {
+    background-color: var(--addButton);
+    color: var(--ButtonText);
+    padding: 15px;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    display: block;
+    margin: 20px;
+    cursor:pointer;
+}
+
+.addForm__button:hover {
+background-color: var(--addButtonHover);
+}
+
+.error {
+    background-color: var(--errorBackground);
+    color: var(--errorColor);
+    padding: 5px;
+    margin-left: 10px;
+    display: inline-block;
+    position: relative;
+    border-radius: 2px;
+}
+
+.error:after {
+    content: ' ';
+    width: 0;
+    height: 0;
+    border: 5px solid transparent;
+    border-right: 5px solid var(--errorBackground);
+    right: 100%;
+    top: 50%;
+    position:absolute;
+    margin-top: -5px;
+}
+
+.addForm__input--error {
+    border-bottom: 2px solid var(--errorColor);
+}

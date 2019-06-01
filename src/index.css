@@ -1,0 +1,33 @@
+html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+:root {
+  --labelColor: rgba(233, 225, 225, 0.884);
+  --addButton: rgb(47, 235, 235);
+  --addButtonHover: rgb(38, 184, 184);
+  --ButtonText: white;
+  --boxBorder: rgba(231, 223, 223, 0.918);
+  --tableHeaderBackground: rgba(242, 245, 250, 0.918);
+  --tableHeaderText: rgba(145, 148, 153, 0.918);
+  --DangerButton: rgba(143, 31, 31, 0.863);
+  --DangerButtonHover: rgba(95, 21, 21, 0.863);
+  --errorBackground: rgb(252, 214, 243);
+  --errorColor: rgba(204, 69, 69, 0.863);
+}

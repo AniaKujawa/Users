@@ -1,0 +1,69 @@
+@import '../index.css';
+
+.box {
+    border: 1px solid var(--boxBorder);
+    margin: 30px;
+    padding: 20px;
+    border-radius: 5px;
+
+}
+
+.userTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.userTable__sort {
+    height:30px;
+}
+
+.userTable__header {
+    background-color: var(--tableHeaderBackground);
+    text-align: left;
+    width: 100%;
+}
+
+.userTable__headerTitle {
+    padding:10px;
+    color: var(--tableHeaderText);
+}
+
+.userTable__row {
+    border-bottom: 1px solid var(--boxBorder);
+}
+
+.userTable__row:last-child {
+    border-bottom: none;
+}
+
+.userTable__data {
+    padding: 10px;
+}
+
+.userTable__removeButton {
+    border-radius: 50%;
+    padding: 5px;
+    background-color: var(--tableHeaderBackground);
+    border:none;
+    outline: none;
+    border: none;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.userTable__removeAllButton {
+    padding: 10px;
+    background-color: var(--DangerButton);
+    color: var(--ButtonText);
+    border: none;
+    outline: none;
+    float: right;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.userTable__removeAllButton:hover {
+    background-color: var(--DangerButtonHover);
+}
