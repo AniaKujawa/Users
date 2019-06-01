@@ -1,7 +1,7 @@
 import React from 'react';
 import User from './User';
 import './UsersList.css';
-import {FaTrashAlt} from 'react-icons/fa';
+
 
 const UsersList = (props) => {
     return (
@@ -21,7 +21,7 @@ const UsersList = (props) => {
                             type="button" 
                             className="userTable__removeAllButton"
                             onClick={props.removeAll}>
-                            <FaTrashAlt /> Remove all users
+                             Remove all users
                             </button>
                         }
          <table className="userTable">
