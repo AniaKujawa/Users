@@ -25,23 +25,75 @@ class App extends Component {
     };
 }
 
-handleSubmit = (e) => {
-  e.preventDefault();
-  if (!this.state.isSubmitDisabled && this.state.newUser.nickname !== "" && this.state.newUser.email !== "" && this.state.newUser.ip !== "") {
-    const { usersList } = this.state;
-    usersList.push(this.state.newUser);
+componentDidMount() {
+  this.getUsersFromServer();
+}
+
+getUsersFromServer = async() => {
+  const requestHeaders = {
+    "Content-Type": "application/json, charset=UTF-8",
+  };
+  try {
+    let response = await fetch(`/user`, {
+      method: "get",
+      headers: requestHeaders
+    });
+    if (response.status !== 200) throw response;
+    response = await response.json();
     this.setState({
-      usersList,
-     newUser : { nickname: "",
-                email: "",
-                ip: "",
-                date: ""},
-      isEmpty: false,
-      isSubmitDisabled: true
-      })
-      if (this.state.isSortedBy) this.handleSortUsers(this.state.isSortedBy)
+      usersList: response,
+      isEmpty: !response.length 
+    });
+  } catch (err) {
+    alert(err);
+    return;
   }
 }
+
+handleSubmit = async(e) => {
+  e.preventDefault();
+   if (!this.state.isSubmitDisabled && this.state.newUser.nickname !== "" && this.state.newUser.email !== "" && this.state.newUser.ip !== "") {
+    const requestBody = {};
+    requestBody.nickname =  this.state.newUser.nickname;
+    requestBody.email = this.state.newUser.email;
+    requestBody.ip = this.state.newUser.ip;
+
+    try {
+        let response = await fetch('/user', {
+            method: "post",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            },
+            body: JSON.stringify(requestBody)
+        });
+        if (response.status !== 200) throw response;
+        response = await response.json();
+        const { usersList } = this.state;
+        usersList.push(this.state.newUser);
+        this.setState({
+          usersList,
+         newUser : { nickname: "",
+                    email: "",
+                    ip: "",
+                    date: ""},
+          isEmpty: false,
+          isSubmitDisabled: true
+          })
+          if (this.state.isSortedBy) this.handleSortUsers(this.state.isSortedBy)
+    } catch(err) {
+      alert(err);
+            this.setState({
+                errors: {
+                    nickname: "Try again",
+                    email: "Try again",
+                    ip: "Try again"
+                }
+            });
+
+    }
+}
+}
+
 
 handleInputChange = (e) => {
   const value = e.target.value;
@@ -117,31 +169,55 @@ validate = (name, value) => {
 isSubmitDisabled});
 }
 
-handleRemoveUser = (user) => {
+handleRemoveUser = async(user) => {
   let removeConfirm = window.confirm(
     `Do you really want to remove ${user}?`
   );
   if (removeConfirm === true) {
-    const users = this.state.usersList;
-    const userIndex = users.findIndex(el => el.email === user );
-    if ( userIndex !== -1) {
-      users.splice(userIndex, 1);
-      this.setState({
-        usersList: users,
-        isEmpty: !users.length });
-    } else {
-      alert("Something went wrong, please try again!")
+    const requestHeaders = {
+      "Content-Type": "application/json; charset=UTF-8",
+    };
+    try {
+      let response = await fetch(`/user/${user}`, {
+        method: "delete",
+        headers: requestHeaders
+      });
+      if (response.status !== 200) throw response;
+      const users = this.state.usersList;
+      const userIndex = users.findIndex(el => el.email === user );
+      if ( userIndex !== -1) {
+        users.splice(userIndex, 1);
+        this.setState({
+          usersList: users,
+          isEmpty: !users.length });
+      } else {
+        alert("Something went wrong, please try again!")
+      }
+    } catch (error) {
+      alert("Something went wrong, try again later");
     }
   }
 }
 
-handleRemoveAll = () => {
+handleRemoveAll = async() => {
   let removeConfirm = window.confirm(
     "Do you really want to remove all users?"
   );
   if (removeConfirm === true) {
-    const  usersList = [];
-    this.setState({ usersList, isEmpty: true });
+    const requestHeaders = {
+      "Content-Type": "application/json; charset=UTF-8",
+    };
+    try {
+      let response = await fetch(`/user/`, {
+        method: "delete",
+        headers: requestHeaders
+      });
+      if (response.status !== 200) throw response;
+      const  usersList = [];
+      this.setState({ usersList, isEmpty: true });
+    } catch (error) {
+      alert("Something went wrong, try again later");
+    }
   }
 }
 
@@ -167,7 +243,6 @@ handleSortUsers = (e) => {
     usersList.sort(this.sortBy(e))
   }
 }
-
 
 
 render() {
