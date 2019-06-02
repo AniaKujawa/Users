@@ -2,10 +2,10 @@
 
 .box {
     border: 1px solid var(--boxBorder);
-    margin: 30px;
+    margin: 5px;
     padding: 20px;
     border-radius: 5px;
-
+    overflow-x: auto;
 }
 
 .userTable {
@@ -66,4 +66,10 @@
 
 .userTable__removeAllButton:hover {
     background-color: var(--DangerButtonHover);
+}
+
+@media only screen and (min-width: 768px) {
+    .box {
+        margin: 30px;
+    }
 }

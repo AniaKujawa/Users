@@ -1,7 +1,7 @@
 @import '../index.css';
 
 .addForm {
-   margin: 40px;
+   margin: 10px;
 }
 
 .addForm__label {
@@ -14,7 +14,7 @@
     border-right: none;
     border-left: none;
     border-bottom-color: var(--labelColor);
-    min-width: 400px;
+    min-width: 200px;
     min-height: 30px;
 }
 
@@ -42,10 +42,9 @@ background-color: var(--addButtonHover);
     background-color: var(--errorBackground);
     color: var(--errorColor);
     padding: 5px;
-    margin-left: 10px;
-    display: inline-block;
     position: relative;
     border-radius: 2px;
+    margin-top: 10px;
 }
 
 .error:after {
@@ -53,13 +52,36 @@ background-color: var(--addButtonHover);
     width: 0;
     height: 0;
     border: 5px solid transparent;
-    border-right: 5px solid var(--errorBackground);
-    right: 100%;
-    top: 50%;
+    border-bottom: 5px solid var(--errorBackground);
+    right: 50%;
+    top: 0%;
     position:absolute;
-    margin-top: -5px;
+    margin-top: -10px;
 }
 
 .addForm__input--error {
     border-bottom: 2px solid var(--errorColor);
+}
+
+@media only screen and (min-width: 768px) {
+    .addForm {
+        margin: 40px;
+     }
+
+     .addForm__input {
+        min-width: 400px;
+    }
+
+    .error {
+        display: inline-block;
+        margin-left: 10px;
+    }
+
+    .error:after {
+        border-right: 5px solid var(--errorBackground);
+        border-bottom: 5px solid transparent;
+        right: 100%;
+        top: 50%;
+        margin-top: -5px;
+    }
 }
