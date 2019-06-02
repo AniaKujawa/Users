@@ -57,6 +57,7 @@ handleSubmit = async(e) => {
     requestBody.nickname =  this.state.newUser.nickname;
     requestBody.email = this.state.newUser.email;
     requestBody.ip = this.state.newUser.ip;
+    requestBody.date = this.state.newUser.date;
 
     try {
         let response = await fetch('/user', {
@@ -79,7 +80,9 @@ handleSubmit = async(e) => {
           isEmpty: false,
           isSubmitDisabled: true
           })
-          if (this.state.isSortedBy) this.handleSortUsers(this.state.isSortedBy)
+          if (this.state.isSortedBy !== "Sort by...") {
+            this.handleSortUsers(this.state.isSortedBy);
+          } 
     } catch(err) {
       alert(err);
             this.setState({
@@ -240,7 +243,8 @@ handleSortUsers = (e) => {
   usersList.sort(this.sortBy(e.target.value));
   this.setState({usersList, isSortedBy: e.target.value});
   } else {
-    usersList.sort(this.sortBy(e))
+    usersList.sort(this.sortBy(e));
+    this.setState({usersList});
   }
 }
 

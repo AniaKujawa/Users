@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
     const { error } = validateUserAdd(req.body);
     if(error) return res.status(400).json({error: error.details[0].message});
 
-    const { nickname, email, ip } = req.body;
+    const { nickname, email, ip, date } = req.body;
 
     let user = await User.findOne({nickname});
     if(user) return res.status(400).send('Nickname already used.');
@@ -24,7 +24,8 @@ router.post('/', async (req, res) => {
     user = new User({
         nickname: nickname,
         email: email,
-        ip : ip
+        ip : ip,
+        date: date
     });
 
     try {
