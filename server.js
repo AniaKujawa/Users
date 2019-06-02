@@ -9,9 +9,9 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, "client", "build")));
 
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
+// app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+// });
 
 let port = process.env.PORT || 3001;
 app.listen(port, () => console.log(`Listening on PORT ${port}`));
