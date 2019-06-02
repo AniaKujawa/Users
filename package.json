@@ -1,7 +1,6 @@
 {
   "name": "userslist",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "@hapi/joi": "^15.0.3",
     "dotenv": "^8.0.0",
