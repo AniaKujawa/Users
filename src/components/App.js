@@ -39,7 +39,9 @@ handleSubmit = (e) => {
       isEmpty: false,
       isSubmitDisabled: true
       })
-      if (this.state.isSortedBy) this.handleSortUsers(this.state.isSortedBy)
+      if (this.state.isSortedBy !== "Sort by...") {
+        this.handleSortUsers(this.state.isSortedBy);
+      } 
   }
 }
 
@@ -164,7 +166,8 @@ handleSortUsers = (e) => {
   usersList.sort(this.sortBy(e.target.value));
   this.setState({usersList, isSortedBy: e.target.value});
   } else {
-    usersList.sort(this.sortBy(e))
+    usersList.sort(this.sortBy(e));
+    this.setState({usersList});
   }
 }
 
